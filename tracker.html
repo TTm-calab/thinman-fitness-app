@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Thinman Daily Tracker</title>
+  <style>
+    body { font-family: Arial; padding: 20px; background: #f4f4f4; }
+    h1 { color: #333; }
+    .task { margin: 10px 0; }
+    .completed { text-decoration: line-through; color: green; }
+    #points { font-weight: bold; font-size: 18px; margin-top: 20px; }
+    button { padding: 8px 12px; margin-top: 5px; }
+  </style>
+</head>
+<body>
+  <h1>Daily Fitness Tracker</h1>
+
+  <div class="task">
+    <input type="checkbox" onchange="markComplete(this)"> Jumping Jacks (x50)
+  </div>
+  <div class="task">
+    <input type="checkbox" onchange="markComplete(this)"> Pushups (x20)
+  </div>
+  <div class="task">
+    <input type="checkbox" onchange="markComplete(this)"> Sprint (30 sec)
+  </div>
+  <div class="task">
+    <input type="checkbox" onchange="markComplete(this)"> BJJ Shrimp Drill (x10)
+  </div>
+
+ <div id="points">Points: 0 | Level: 1</div>
+<div style="background: #ddd; height: 20px; width: 100%; border-radius: 10px; overflow: hidden; margin-top: 10px;">
+  <div id="xpBar" style="background: #4CAF50; width: 0%; height: 100%;"></div>
+</div>
+
+<script>
+  let points = 0;
+  let level = 1;
+  const xpPerLevel = 100;
+
+  function markComplete(box) {
+    if (box.checked && !box.dataset.done) {
+      box.dataset.done = "true";
+      points += 10;
+    } else if (!box.checked && box.dataset.done === "true") {
+      box.dataset.done = "";
+      points -= 10;
+    }
+
+    level = Math.floor(points / xpPerLevel) + 1;
+    const xpProgress = (points % xpPerLevel) / xpPerLevel * 100;
+
+    document.getElementById('points').textContent = `Points: ${points} | Level: ${level}`;
+    document.getElementById('xpBar').style.width = xpProgress + '%';
+  }
+</script> 

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Thinman Fitness System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 30px;
+    }
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+    #content {
+      margin-top: 20px;
+      text-align: left;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Thinman Fitness System</h1>
+  <button onclick="switchMode('coach')">Coach / Parent Mode</button>
+  <button onclick="switchMode('athlete')">Athlete / Kid Mode</button>
+<button onclick="window.location.href='tracker.html'">Go to Daily Tracker</button> 
++++++++++++++
+  <div id="content">
+    <p>Select a mode to get started.</p>
+  </div>
+
+  <script>
+    function switchMode(mode) {
+      const content = document.getElementById('content');
+      if (mode === 'coach') {
+        content.innerHTML = `
+          <h2>Coach / Parent Mode</h2>
+          <ul>
+            <li>Train kids in BJJ, basketball, hockey & more</li>
+            <li>Fun workouts & knowledge-based drills</li>
+            <li>Competition prep (beginner to advanced)</li>
+            <li>Track progress across multiple sports</li>
+          </ul>
+        `;
+      } else if (mode === 'athlete') {
+        content.innerHTML = `
+          else if (mode === 'athlete') {
+  content.innerHTML = `
+    <h2>Athlete / Kid Mode</h2>
+    <ul>
+      <li>Fun daily workouts & challenges</li>
+      <li>BJJ belt path from white to red</li>
+      <li>Track skills, strength, and speed</li>
+      <li>Level up and unlock Thinman Elite</li>
+    </ul>
+    <a href="tracker.html"><button>Go to Daily Tracker</button></a>
+  `;
+} 

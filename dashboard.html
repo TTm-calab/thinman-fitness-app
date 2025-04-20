@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Thinman Dashboard</title>
+  <style>
+    body { font-family: Arial; padding: 20px; background: #f4f4f4; }
+    h1 { color: #333; }
+    .section { background: #fff; padding: 15px; margin-bottom: 20px; border-radius: 8px; }
+    label, select, input, button { display: block; margin-top: 10px; }
+    button { padding: 10px; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>Thinman Fitness Dashboard</h1>
+
+  <div class="section">
+    <label for="sport">Select Your Sport:</label>
+    <select id="sport" onchange="loadSportFeatures()">
+      <option value="">--Choose--</option>
+      <option value="football">Football</option>
+      <option value="basketball">Basketball</option>
+      <option value="bjj">Brazilian Jiu-Jitsu</option>
+      <option value="mma">MMA</option>
+      <option value="boxing">Boxing</option>
+      <option value="track">Track & Field</option>
+    </select>
+  </div>
+
+  <div id="features" class="section"></div>
+
+  <a href="index.html"><button>Back to Main</button></a>
+
+  <script>
+    function loadSportFeatures() {
+      const sport = document.getElementById('sport').value;
+      const features = document.getElementById('features');
+
+      if (!sport) {
+        features.innerHTML = '';
+        return;
+      }
+
+      features.innerHTML = `
+        <h2>${sport.toUpperCase()} TRAINING</h2>
+        <label>Workout Type:</label>
+        <input type="text" id="workoutType" placeholder="e.g. Drills, Endurance, Technique">
+
+        <label>Duration (min):</label>
+        <input type="number" id="duration">
+
+        <label>Intensity (1–10):</label>
+        <input type="number" id="intensity" min="1" max="10">
+
+        <label>Notes:</label>
+        <input type="text" id="notes" placeholder="Write anything about today’s workout">
+
+        <button onclick="logWorkout()">Save Workout</button>
+
+        <ul id="logList"></ul>
+      `;
+    }
+
+    function logWorkout() {
+      const workoutType = document.getElementById('workoutType').value;
+      const duration = document.getElementById('duration').value;
+      const intensity = document.getElementById('intensity').value;
+      const notes = document.getElementById('notes').value;
+      const list = document.getElementById('logList');
+      const date = new Date().toLocaleDateString();
+
+      const entry = document.createElement('li');
+      entry.textContent = `${date} - ${workoutType} | ${duration}min | Intensity: ${intensity} | Notes: ${notes}`;
+      list.appendChild(entry);
+
+      // Clear fields
+      document.getElementById('workoutType').value = '';
+      document.getElementById('duration').value = '';
+      document.getElementById('intensity').value = '';
+      document.getElementById('notes').value = '';
+    }
+  </script>
+</body>
+</html> 
